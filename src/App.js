@@ -1,8 +1,12 @@
 import {css} from '@emotion/css'
-import {Autocomplete, Button, Chip, createTheme, Grid, Stack, TextField} from "@material-ui/core";
+import {Autocomplete, Button, Chip, createTheme, Grid, Slider, Stack, TextField} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/core/styles"
 import axios from "axios"
 import {useState} from "react";
+import YearsSlider from "./components/YearsSlider";
+import Poster from "./components/Poster";
+import NameFilm from "./components/NameFilm";
+import RandomFilmButton from "./components/RandomFilmButton";
 
 const theme = createTheme({
    palette: {
@@ -26,11 +30,8 @@ function getListFilms() {
 
 }
 
-function generateRandomFilm() {
-   console.log(222);
-}
-
 const countriesList = [
+   {id: 0, country: "Все страны"},
    {id: 2, country: "Россия", addId: 13},
    {id: 1, country: "США"},
    {id: 25, country: "Австралия"},
@@ -50,75 +51,78 @@ const countriesList = [
 ]
 
 function App() {
-   const [allCountries, selectAllCountries] = useState("Все страны")
+   const [allCountries, selectAllCountries] = useState([countriesList[0]])
 
    return (
       <ThemeProvider theme={theme}>
          <div className="App">
-            <Autocomplete
-               multiple
-               limitTags={13}
-               id="multiple-limit-tags"
-               options={countriesList}
-               getOptionLabel={(option) => option.country}
-               defaultValue={[]}
-               autoHighlight={true}
-               onChange={()=> selectAllCountries("Выберите страну")}
-               renderInput={(params) => (
-                  <TextField {...params} label={allCountries} placeholder="" />
-               )}
-            />
-            <header
-               className={css`
-                 display: flex;
-                 justify-content: center;
-                 align-items: center;
-                 height: 100vh;
-               `}>
-               <Button
-                  onClick={getListFilms}
-                  variant="contained"
-                  className={css`
-                    &.MuiButton-root {
-                      margin-right: 20px;
-                      padding: 10px;
-                    }
-                  `}>
-                  Получить список фильмов
-               </Button>
-               <Button
-                  variant="contained"
-                  color="error"
-                  className={css`
-                    &.MuiButton-root {
-                      margin-right: 20px;
-                      padding: 10px;
-                    }
-                  `}>
-                  Не предлагать этот фильм
-               </Button>
-               <Button
-                  variant="contained"
-                  className={css`
-                    &.MuiButton-root {
-                      margin-right: 20px;
-                      padding: 10px;
-                    }
-                  `}>
-                  Похожие фильмы
-               </Button>
-               <Button
-                  onClick={generateRandomFilm}
-                  variant="contained"
-                  color="secondary"
-                  className={css`
-                    &.MuiButton-root {
-                      padding: 10px;
-                    }
-                  `}>
-                  Случайный фильм
-               </Button>
-            </header>
+            {/*<Autocomplete*/}
+            {/*   multiple*/}
+            {/*   limitTags={13}*/}
+            {/*   id="multiple-limit-tags"*/}
+            {/*   options={countriesList}*/}
+            {/*   getOptionLabel={(option) => option.country}*/}
+            {/*   defaultValue={allCountries}*/}
+            {/*   autoHighlight={true}*/}
+            {/*   onChange={(e, film) => {*/}
+            {/*      selectAllCountries([...allCountries, countriesList[1]])*/}
+            {/*      console.log(e, film)*/}
+            {/*      console.log(allCountries)*/}
+            {/*   }}*/}
+            {/*   renderInput={(params) => (*/}
+            {/*      <TextField {...params} label="Выберите страну" placeholder=""/>*/}
+            {/*   )}*/}
+            {/*/>*/}
+            {/*<header*/}
+            {/*   className={css`*/}
+            {/*     display: flex;*/}
+            {/*     justify-content: center;*/}
+            {/*     align-items: center;*/}
+            {/*     height: 100px;*/}
+            {/*   `}>*/}
+            {/*   <Button*/}
+            {/*      onClick={getListFilms}*/}
+            {/*      variant="contained"*/}
+            {/*      className={css`*/}
+            {/*        &.MuiButton-root {*/}
+            {/*          margin-right: 20px;*/}
+            {/*          padding: 10px;*/}
+            {/*        }*/}
+            {/*      `}>*/}
+            {/*      Получить список фильмов*/}
+            {/*   </Button>*/}
+            {/*   <Button*/}
+            {/*      variant="contained"*/}
+            {/*      color="error"*/}
+            {/*      className={css`*/}
+            {/*        &.MuiButton-root {*/}
+            {/*          margin-right: 20px;*/}
+            {/*          padding: 10px;*/}
+            {/*        }*/}
+            {/*      `}>*/}
+            {/*      Не предлагать этот фильм*/}
+            {/*   </Button>*/}
+            {/*   <Button*/}
+            {/*      variant="contained"*/}
+            {/*      className={css`*/}
+            {/*        &.MuiButton-root {*/}
+            {/*          margin-right: 20px;*/}
+            {/*          padding: 10px;*/}
+            {/*        }*/}
+            {/*      `}>*/}
+            {/*      Похожие фильмы*/}
+            {/*   </Button>*/}
+
+            {/*</header>*/}
+            <div className={css`
+              text-align: center;
+              margin-top: 50px;
+            `}>
+               <Poster/>
+               <NameFilm/>
+               <RandomFilmButton/>
+            </div>
+            <YearsSlider/>
          </div>
       </ThemeProvider>
    );
