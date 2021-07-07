@@ -1,6 +1,6 @@
-import Box from "@material-ui/core/Box";
-import Slider from "@material-ui/core/Slider";
-import {useState} from "react";
+import Slider from "@material-ui/core/Slider"
+import {useState} from "react"
+import {css} from "@emotion/css"
 
 const marks = [
    {
@@ -17,7 +17,7 @@ function valuetext(value) {
    return `${value} год`;
 }
 
-export default function YearsSlider() {
+function YearsSlider() {
    const [value, setValue] = useState([1915, 2021]);
 
    const handleChange = (event, newValue) => {
@@ -25,9 +25,13 @@ export default function YearsSlider() {
    };
 
    return (
-      <Box sx={{ width: 250, margin: 20 }}>
+      <div className={css`
+        width: 250px;
+        margin: 20px
+      `}>
+         <p>Год</p>
          <Slider
-            getAriaLabel={() => "Диапазон лет"}
+            aria-label="Диапазон лет"
             value={value}
             onChange={handleChange}
             marks={marks}
@@ -36,6 +40,8 @@ export default function YearsSlider() {
             min={1920}
             max={2021}
          />
-      </Box>
+      </div>
    );
 }
+
+export default YearsSlider
