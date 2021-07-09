@@ -12,7 +12,8 @@ const theme = createTheme({
       background: {
          default: "#c3ecff",
       }
-   }
+   },
+   spacing: 1
 })
 
 function getListFilms() {
