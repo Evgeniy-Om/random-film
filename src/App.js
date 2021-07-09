@@ -15,15 +15,30 @@ const theme = createTheme({
 function App() {
    return (
       <ThemeProvider theme={theme}>
-         <Box width="100%" height="100vh" display="flex" flexDirection="column" justifyContent="center">
-            <Box>
-               <Box textAlign="center">
+         <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            height: '100vh',
+            label: '1'
+         }}>
+            <div>
+               <Box sx={{
+                  textAlign: 'center',
+                  label: '2'
+               }}>
                   <Poster/>
                   <NameFilm/>
                   <RandomFilmButton/>
                </Box>
-               <Box display="flex" justifyContent="center" m="30px auto" maxWidth={1400}>
-                  <Grid container columnSpacing={25} xs={10}>
+               <Box sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  margin: '30px auto 0',
+                  maxWidth: '1400px',
+                  label: '3'
+               }}>
+                  <Grid container columnSpacing={25} rowSpacing={30} xs={12} sm={10}>
                      <Grid item xs={6} md={3}>
                         <CountrySelect/>
                      </Grid>
@@ -38,7 +53,7 @@ function App() {
                      </Grid>
                   </Grid>
                </Box>
-            </Box>
+            </div>
          </Box>
       </ThemeProvider>
    );
