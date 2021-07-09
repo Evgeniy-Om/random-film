@@ -15,30 +15,31 @@ const theme = createTheme({
 function App() {
    return (
       <ThemeProvider theme={theme}>
-         <div className="App">
-            <Box mt={50} textAlign="center">
-               <Poster/>
-               <NameFilm/>
-               <RandomFilmButton/>
+         <Box width="100%" height="100vh" display="flex" flexDirection="column" justifyContent="center">
+            <Box>
+               <Box textAlign="center">
+                  <Poster/>
+                  <NameFilm/>
+                  <RandomFilmButton/>
+               </Box>
+               <Box display="flex" justifyContent="center" m="30px auto" maxWidth={1400}>
+                  <Grid container columnSpacing={25} xs={10}>
+                     <Grid item xs={6} md={3}>
+                        <CountrySelect/>
+                     </Grid>
+                     <Grid item xs={6} md={3}>
+                        <GenreSelect/>
+                     </Grid>
+                     <Grid item xs={6} md={3}>
+                        <YearsSlider/>
+                     </Grid>
+                     <Grid item xs={6} md={3}>
+                        <RatingSlider/>
+                     </Grid>
+                  </Grid>
+               </Box>
             </Box>
-
-            <Box m={30}>
-               <Grid container columnSpacing={25}>
-                  <Grid item xs={6} md={3}>
-                     <CountrySelect/>
-                  </Grid>
-                  <Grid item xs={6} md={3}>
-                     <GenreSelect/>
-                  </Grid>
-                  <Grid item xs={6} md={3}>
-                     <YearsSlider/>
-                  </Grid>
-                  <Grid item xs={6} md={3}>
-                     <RatingSlider/>
-                  </Grid>
-               </Grid>
-            </Box>
-         </div>
+         </Box>
       </ThemeProvider>
    );
 }
