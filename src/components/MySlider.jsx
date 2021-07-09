@@ -1,6 +1,5 @@
-import {css} from "@emotion/css";
 import {useState} from "react";
-import {Slider} from "@material-ui/core";
+import {Box, Slider, Typography} from "@material-ui/core";
 
 function MySlider({marks, name, ariaLabel}) {
    const [value, setValue] = useState([marks[0].value, marks[1].value]);
@@ -10,10 +9,8 @@ function MySlider({marks, name, ariaLabel}) {
    }
 
    return (
-      <div className={css`        
-        margin: 0 10px 0 10px;
-      `}>
-         <p className={css`margin: 0 0 10px -10px`}>{name.charAt(0).toUpperCase() + name.slice(1)}</p>
+      <Box ml={10} mr={10}>
+         <Typography mb={10} ml={-10}>{name.charAt(0).toUpperCase() + name.slice(1)}</Typography>
          <Slider
             aria-label={ariaLabel}
             value={value}
@@ -24,7 +21,7 @@ function MySlider({marks, name, ariaLabel}) {
             min={marks[0].value}
             max={marks[1].value}
          />
-      </div>
+      </Box>
    )
 }
 
