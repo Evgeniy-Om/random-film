@@ -12,10 +12,10 @@ function RandomFilmButton() {
          variant="contained"
          color="primary"
          className={css`
-                    &.MuiButton-root {
-                      padding: 10px 50px;
-                    }
-                  `}>
+           &.MuiButton-root {
+             padding: 10px 50px;
+           }
+         `}>
          Случайный фильм
       </Button>
    )
