@@ -1,11 +1,7 @@
 import {Box, createTheme, Grid} from "@material-ui/core"
 import {ThemeProvider} from "@material-ui/core/styles"
-import axios from "axios"
-import {useState} from "react";
-import YearsSlider from "./components/YearsSlider";
-import Poster from "./components/Poster";
-import NameFilm from "./components/NameFilm";
-import RandomFilmButton from "./components/RandomFilmButton";
+import {Poster, NameFilm, RandomFilmButton, CountrySelect, GenreSelect, YearsSlider, RatingSlider} from "./components"
+
 
 const theme = createTheme({
    palette: {
