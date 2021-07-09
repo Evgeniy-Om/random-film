@@ -1,13 +1,13 @@
-import {css} from "@emotion/css"
+import {Typography} from "@material-ui/core";
 
 function NameFilm() {
    return (
-      <p className={css`
-        font-size: 25px;
-        margin: 20px 0 30px;
-      `}>
+      <Typography sx={{
+         fontSize: '25px',
+         margin: '20px 0 30px'
+      }}>
          Терминал
-      </p>
+      </Typography>
    )
 }
 
