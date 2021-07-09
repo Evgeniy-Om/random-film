@@ -1,5 +1,4 @@
-import {css} from '@emotion/css'
-import {Autocomplete, Button, Chip, createTheme, Grid, Slider, Stack, TextField} from "@material-ui/core";
+import {Box, createTheme, Grid} from "@material-ui/core"
 import {ThemeProvider} from "@material-ui/core/styles"
 import axios from "axios"
 import {useState} from "react";
@@ -56,73 +55,28 @@ function App() {
    return (
       <ThemeProvider theme={theme}>
          <div className="App">
-            {/*<Autocomplete*/}
-            {/*   multiple*/}
-            {/*   limitTags={13}*/}
-            {/*   id="multiple-limit-tags"*/}
-            {/*   options={countriesList}*/}
-            {/*   getOptionLabel={(option) => option.country}*/}
-            {/*   defaultValue={allCountries}*/}
-            {/*   autoHighlight={true}*/}
-            {/*   onChange={(e, film) => {*/}
-            {/*      selectAllCountries([...allCountries, countriesList[1]])*/}
-            {/*      console.log(e, film)*/}
-            {/*      console.log(allCountries)*/}
-            {/*   }}*/}
-            {/*   renderInput={(params) => (*/}
-            {/*      <TextField {...params} label="Выберите страну" placeholder=""/>*/}
-            {/*   )}*/}
-            {/*/>*/}
-            {/*<header*/}
-            {/*   className={css`*/}
-            {/*     display: flex;*/}
-            {/*     justify-content: center;*/}
-            {/*     align-items: center;*/}
-            {/*     height: 100px;*/}
-            {/*   `}>*/}
-            {/*   <Button*/}
-            {/*      onClick={getListFilms}*/}
-            {/*      variant="contained"*/}
-            {/*      className={css`*/}
-            {/*        &.MuiButton-root {*/}
-            {/*          margin-right: 20px;*/}
-            {/*          padding: 10px;*/}
-            {/*        }*/}
-            {/*      `}>*/}
-            {/*      Получить список фильмов*/}
-            {/*   </Button>*/}
-            {/*   <Button*/}
-            {/*      variant="contained"*/}
-            {/*      color="error"*/}
-            {/*      className={css`*/}
-            {/*        &.MuiButton-root {*/}
-            {/*          margin-right: 20px;*/}
-            {/*          padding: 10px;*/}
-            {/*        }*/}
-            {/*      `}>*/}
-            {/*      Не предлагать этот фильм*/}
-            {/*   </Button>*/}
-            {/*   <Button*/}
-            {/*      variant="contained"*/}
-            {/*      className={css`*/}
-            {/*        &.MuiButton-root {*/}
-            {/*          margin-right: 20px;*/}
-            {/*          padding: 10px;*/}
-            {/*        }*/}
-            {/*      `}>*/}
-            {/*      Похожие фильмы*/}
-            {/*   </Button>*/}
-
-            {/*</header>*/}
-            <div className={css`
-              text-align: center;
-              margin-top: 50px;
-            `}>
+            <Box mt={50} textAlign="center">
                <Poster/>
                <NameFilm/>
                <RandomFilmButton/>
-            </div>
-            <YearsSlider/>
+            </Box>
+
+            <Box m={30}>
+               <Grid container columnSpacing={25}>
+                  <Grid item xs={6} md={3}>
+                     <CountrySelect/>
+                  </Grid>
+                  <Grid item xs={6} md={3}>
+                     <GenreSelect/>
+                  </Grid>
+                  <Grid item xs={6} md={3}>
+                     <YearsSlider/>
+                  </Grid>
+                  <Grid item xs={6} md={3}>
+                     <RatingSlider/>
+                  </Grid>
+               </Grid>
+            </Box>
          </div>
       </ThemeProvider>
    );
