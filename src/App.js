@@ -38,17 +38,17 @@ function App() {
                   maxWidth: '1400px',
                   label: '3'
                }}>
-                  <Grid container columnSpacing={25} rowSpacing={30} xs={12} sm={10}>
-                     <Grid item xs={6} md={3}>
+                  <Grid container columnSpacing={25} rowSpacing={30} xs={12} sm={10} md={7} lg={6}>
+                     <Grid item xs={6} md={6}>
                         <CountrySelect/>
                      </Grid>
-                     <Grid item xs={6} md={3}>
+                     <Grid item xs={6} md={6}>
                         <GenreSelect/>
                      </Grid>
-                     <Grid item xs={6} md={3}>
+                     <Grid item xs={6} md={6}>
                         <YearsSlider/>
                      </Grid>
-                     <Grid item xs={6} md={3}>
+                     <Grid item xs={6} md={6}>
                         <RatingSlider/>
                      </Grid>
                   </Grid>
