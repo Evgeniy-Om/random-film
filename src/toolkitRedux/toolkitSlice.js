@@ -1,13 +1,21 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit"
+import initialState from "./initialState"
 
 const toolkitSlice = createSlice({
       name: 'toolkit',
-      initialState: {
-         country: "Все страны"
-      },
+      initialState: initialState,
       reducers: {
          selectCountry(state, action) {
-            state.country = action.payload;
+            state.countries.selectedCountry = action.payload
+         },
+         selectGenre(state, action) {
+            state.genres.selectedGenre = action.payload
+         },
+         selectYears(state, action) {
+            state.years.selectedYears = action.payload
+         },
+         selectRating(state, action) {
+            state.rating.selectedRating = action.payload
          }
       }
    }
@@ -15,4 +23,4 @@ const toolkitSlice = createSlice({
 
 export default toolkitSlice.reducer
 
-export const {selectCountry} = toolkitSlice.actions
+export const {selectCountry, selectGenre, selectYears, selectRating} = toolkitSlice.actions
