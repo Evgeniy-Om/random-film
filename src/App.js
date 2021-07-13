@@ -31,14 +31,13 @@ function App() {
                   <NameFilm/>
                   <RandomFilmButton/>
                </Box>
-               <Box sx={{
+               <Grid container sx={{
                   display: 'flex',
                   justifyContent: 'center',
                   margin: '30px auto 0',
                   maxWidth: '1400px',
-                  label: '3'
                }}>
-                  <Grid container columnSpacing={25} rowSpacing={30} xs={12} sm={10} md={7} lg={6}>
+                  <Grid item container columnSpacing={25} rowSpacing={30} xs={12} sm={10} md={7} lg={6}>
                      <Grid item xs={6} md={6}>
                         <CountrySelect/>
                      </Grid>
@@ -52,11 +51,12 @@ function App() {
                         <RatingSlider/>
                      </Grid>
                   </Grid>
-               </Box>
+               </Grid>
             </div>
          </Box>
       </ThemeProvider>
-   );
+   )
+      ;
 }
 
 export default App;
