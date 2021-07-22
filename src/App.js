@@ -17,6 +17,7 @@ const theme = createTheme({
 
 function App() {
    const [films, setFilms] = useState([1,2,3])
+   const [numFilm, setNumFilm] = useState(0)
 
    useEffect(() => {
       fetchFilms()
@@ -26,10 +27,14 @@ function App() {
       console.log(films);
    },[films]);
 
+   useEffect(()=>{
+      console.log(numFilm);
+   },[numFilm]);
+
    async function fetchFilms() {
       try {
          const response =  await axios({
-            url: `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?order=RATING&ratingFrom=1&ratingTo=10&yearFrom=1920&yearTo=2021&page=1`,
+            url: `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?order=RATING&type=FILM&ratingFrom=1&ratingTo=10&yearFrom=1920&yearTo=2021&page=1`,
             headers: {
                'X-API-KEY': 'b7f13992-d5e9-4deb-a225-1692bcdd1f07'
                // 9cf1fa82-1cb3-4ab0-b073-f34c936caf95
@@ -44,7 +49,6 @@ function App() {
 
    return (
       <ThemeProvider theme={theme}>
-         <span>{films[0].nameRu}</span>
          <Box sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -57,9 +61,16 @@ function App() {
                   textAlign: 'center',
                   label: '2'
                }}>
-                  <Poster/>
-                  <NameFilm/>
-                  <RandomFilmButton/>
+                  <Poster img = {films[numFilm].posterUrlPreview}/>
+                  <NameFilm name = {films[numFilm].nameRu}/>
+                  <RandomFilmButton
+                     onClick = {
+                        ()=> {
+                           if (numFilm<19) setNumFilm((numFilm)=>numFilm+1)
+                           console.log(numFilm)
+                        }
+                     }
+                  />
                </Box>
                <Grid container sx={{
                   display: 'flex',
