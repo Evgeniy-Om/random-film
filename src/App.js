@@ -1,6 +1,9 @@
 import {Box, createTheme, Grid} from "@material-ui/core"
 import {ThemeProvider} from "@material-ui/core/styles"
 import {Poster, NameFilm, RandomFilmButton, CountrySelect, GenreSelect, YearsSlider, RatingSlider} from "./components"
+import {useEffect, useState} from "react";
+import shuffleListFilms from "./features/shuffleListFilms";
+import axios from "axios";
 
 
 const theme = createTheme({
@@ -13,8 +16,35 @@ const theme = createTheme({
 })
 
 function App() {
+   const [films, setFilms] = useState([1,2,3])
+
+   useEffect(() => {
+      fetchFilms()
+   }, [])
+
+   useEffect(()=>{
+      console.log(films);
+   },[films]);
+
+   async function fetchFilms() {
+      try {
+         const response =  await axios({
+            url: `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?order=RATING&ratingFrom=1&ratingTo=10&yearFrom=1920&yearTo=2021&page=1`,
+            headers: {
+               'X-API-KEY': 'b7f13992-d5e9-4deb-a225-1692bcdd1f07'
+               // 9cf1fa82-1cb3-4ab0-b073-f34c936caf95
+            }
+         })
+         const shuffledListFilms = shuffleListFilms(response.data.films)
+         setFilms(shuffledListFilms)
+      } catch (e) {
+         alert(e)
+      }
+   }
+
    return (
       <ThemeProvider theme={theme}>
+         <span>{films[0].nameRu}</span>
          <Box sx={{
             display: 'flex',
             flexDirection: 'column',
