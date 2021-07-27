@@ -34,7 +34,7 @@ function App() {
    async function fetchFilms() {
       try {
          const response =  await axios({
-            url: `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?order=RATING&type=FILM&ratingFrom=1&ratingTo=10&yearFrom=1920&yearTo=2021&page=1`,
+            url: `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1`,
             headers: {
                'X-API-KEY': 'b7f13992-d5e9-4deb-a225-1692bcdd1f07'
                // 9cf1fa82-1cb3-4ab0-b073-f34c936caf95
@@ -58,11 +58,13 @@ function App() {
          }}>
             <div>
                <Box sx={{
-                  textAlign: 'center',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
                   label: '2'
                }}>
-                  <Poster img = {films[numFilm].posterUrlPreview}/>
-                  <NameFilm name = {films[numFilm].nameRu}/>
+                  <Poster src = {films[numFilm].posterUrlPreview}/>
+                  <NameFilm name = {films[numFilm].nameRu} year={films[numFilm].year}/>
                   <RandomFilmButton
                      onClick = {
                         ()=> {

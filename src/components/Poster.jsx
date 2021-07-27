@@ -1,7 +1,30 @@
-function Poster() {
+import {useEffect, useState} from "react";
+import {Skeleton} from "@material-ui/core";
+
+function Poster({src}) {
+   const [isLoaded, setIsLoaded] = useState(false)
+
+   useEffect(() => {
+      setIsLoaded(false)
+   }, [src])
+
    return (
-      <img src="https://avatars.mds.yandex.net/get-kinopoisk-image/1900788/d55c3446-6313-4d17-a2f9-6b035dd5f698/360"
-           alt="111" width="auto" height="350px"/>
+      <div>
+         <img src={src}
+              onLoad={() => setIsLoaded(true)}
+              alt="111"
+              width="auto"
+              height="350px"
+              style={{display: isLoaded ? 'block' : 'none'}}
+         />
+         <Skeleton
+            variant="rectangle"
+            animation="wave"
+            width={250}
+            height={350}
+            sx={{display: isLoaded ? 'none' : 'block'}}
+         />
+      </div>
    )
 }
 

@@ -1,13 +1,16 @@
-import {Typography} from "@material-ui/core";
+import {Box, Skeleton, Typography} from "@material-ui/core";
 
-function NameFilm() {
+function NameFilm({name, year}) {
    return (
-      <Typography sx={{
-         fontSize: '25px',
-         margin: '20px 0 30px'
-      }}>
-         Терминал
-      </Typography>
+      <Box sx={{margin: '20px 0 30px'}}>
+         {name
+            ? <Typography sx={{
+               fontSize: '25px',
+            }}>
+               {name} ({year})
+            </Typography>
+            : <Skeleton variant='text' animation="wave" width={200} height={38}/>}
+      </Box>
    )
 }
 
