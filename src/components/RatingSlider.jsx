@@ -4,9 +4,6 @@ import {Box, Slider, Typography} from "@material-ui/core";
 
 function RatingSlider() {
    const {selectedRating, marks} = useSelector(state => {
-      /**
-       * @param {{toolkit:string}} state
-       */
       return state.toolkit.rating;
    })
    const dispatch = useDispatch()
@@ -17,7 +14,7 @@ function RatingSlider() {
 
    return (
       <Box ml={10} mr={10}>
-         <Typography mb={10} ml={-10}>Год</Typography>
+         <Typography mb={10} ml={-10}>Рейтинг</Typography>
          <Slider
             value={[selectedRating[0],selectedRating[1]]}
             onChange={handleChange}
