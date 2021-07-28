@@ -29,6 +29,11 @@ function CountrySelect() {
    const country = useSelector(state => state.toolkit.selectedCountry)
    const dispatch = useDispatch()
 
+   const handleChange = (event) => {
+      const selectedCountry = countriesList.filter((data) => data.country === event.target.value)[0]
+      dispatch(selectCountry(selectedCountry))
+   }
+
    return (
       <Box mt={10}>
          <FormControl fullWidth>
@@ -38,10 +43,7 @@ function CountrySelect() {
                id="country-select"
                value={country.country}
                label="Country"
-               onChange={e => {
-                  const selectedCountry = countriesList.filter((data) => data.country === e.target.value)[0]
-                  dispatch(selectCountry(selectedCountry))
-               }}
+               onChange={handleChange}
             >
                {countriesList.map((item) => (
                   <MenuItem
