@@ -9,7 +9,7 @@ const toolkitSlice = createSlice({
             state.selectedCountry = action.payload
          },
          selectGenre(state, action) {
-            state.genres.selectedGenre = action.payload
+            state.selectedGenre = action.payload
          },
          selectYears(state, action) {
             state.years.selectedYears = action.payload

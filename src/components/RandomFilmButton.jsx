@@ -3,11 +3,10 @@ import {Button} from "@material-ui/core"
 import {useSelector} from "react-redux"
 
 function RandomFilmButton({onClick}) {
-   const {selectedCountry, genres, years, rating, filmsAPI} = useSelector(state => state.toolkit)
+   const {selectedCountry, selectedGenre, years, rating, filmsAPI} = useSelector(state => state.toolkit)
 
-   const genreId = genres.list.filter((data) => data.genre === genres.selectedGenre)[0].id
    console.log(selectedCountry.id)
-   console.log(genreId)
+   console.log(selectedGenre.id)
    return (
       <Button
          onClick={onClick}
