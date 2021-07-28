@@ -6,7 +6,7 @@ const toolkitSlice = createSlice({
       initialState: initialState,
       reducers: {
          selectCountry(state, action) {
-            state.countries.selectedCountry = action.payload
+            state.selectedCountry = action.payload
          },
          selectGenre(state, action) {
             state.genres.selectedGenre = action.payload
@@ -20,6 +20,8 @@ const toolkitSlice = createSlice({
       }
    }
 )
+
+
 
 export default toolkitSlice.reducer
 
