@@ -12,10 +12,10 @@ const toolkitSlice = createSlice({
             state.selectedGenre = action.payload
          },
          selectYears(state, action) {
-            state.years.selectedYears = action.payload
+            state.selectedYears = action.payload
          },
          selectRating(state, action) {
-            state.rating.selectedRating = action.payload
+            state.selectedRating = action.payload
          }
       }
    }
