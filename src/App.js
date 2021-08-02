@@ -3,7 +3,9 @@ import {ThemeProvider} from "@material-ui/core/styles"
 import {Poster, NameFilm, RandomFilmButton, CountrySelect, GenreSelect, YearsSlider, RatingSlider} from "./components"
 import {useEffect, useState} from "react";
 import shuffleListFilms from "./features/shuffleListFilms";
-import axios from "axios";
+import top250ListFilms from "./features/top250ListFilms";
+import {useDispatch, useSelector} from "react-redux";
+import {numFilm, shuffle} from "./toolkitRedux/toolkitSlice";
 
 
 const theme = createTheme({
@@ -16,8 +18,8 @@ const theme = createTheme({
 })
 
 function App() {
-   const [films, setFilms] = useState([1,2,3])
-   const [numFilm, setNumFilm] = useState(0)
+   const {currentFilmNumber, shuffledListFilms} = useSelector(state => state.toolkit)
+   const dispatch = useDispatch()
 
     useEffect(() => {
       dispatch(shuffle())
@@ -41,17 +43,19 @@ function App() {
                   alignItems: 'center',
                   label: '2'
                }}>
-                  <Poster src = {films[numFilm].posterUrlPreview}/>
-                  <NameFilm name = {films[numFilm].nameRu} year={films[numFilm].year}/>
+                  <Poster/>
+                  <NameFilm/>
                   <RandomFilmButton
-                     onClick = {
-                        ()=> {
-                           if (numFilm<19) setNumFilm((numFilm)=>numFilm+1)
-                           console.log(numFilm)
+                     onClick={
+                        () => {
+                           if (currentFilmNumber < shuffledListFilms.length - 1) dispatch(numFilm())
+                           console.log(currentFilmNumber)
+                           console.log(shuffledListFilms)
                         }
                      }
                   />
                </Box>
+               {/* Фильтры поиска*/}
                <Grid container sx={{
                   display: 'flex',
                   justifyContent: 'center',
