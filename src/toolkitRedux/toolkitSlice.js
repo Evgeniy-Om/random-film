@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit"
 import initialState from "./initialState"
+import shuffleListFilms from "../features/shuffleListFilms";
 
 const toolkitSlice = createSlice({
       name: 'toolkit',
@@ -16,6 +17,12 @@ const toolkitSlice = createSlice({
          },
          selectRating(state, action) {
             state.selectedRating = action.payload
+         },
+         numFilm(state) {
+            state.currentFilmNumber += 1
+         },
+         shuffle(state) {
+            state.shuffledListFilms = shuffleListFilms(state.shuffledListFilms)
          }
       }
    }
@@ -25,4 +32,10 @@ const toolkitSlice = createSlice({
 
 export default toolkitSlice.reducer
 
-export const {selectCountry, selectGenre, selectYears, selectRating} = toolkitSlice.actions
+export const {
+   selectCountry,
+   selectGenre,
+   selectYears,
+   selectRating,
+   shuffle,
+   numFilm} = toolkitSlice.actions
