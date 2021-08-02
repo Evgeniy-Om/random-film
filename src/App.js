@@ -19,33 +19,11 @@ function App() {
    const [films, setFilms] = useState([1,2,3])
    const [numFilm, setNumFilm] = useState(0)
 
-   useEffect(() => {
-      fetchFilms()
-   }, [])
-
-   useEffect(()=>{
-      console.log(films);
-   },[films]);
-
-   useEffect(()=>{
-      console.log(numFilm);
-   },[numFilm]);
-
-   async function fetchFilms() {
-      try {
-         const response =  await axios({
-            url: `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1`,
-            headers: {
-               'X-API-KEY': 'b7f13992-d5e9-4deb-a225-1692bcdd1f07'
-               // 9cf1fa82-1cb3-4ab0-b073-f34c936caf95
-            }
-         })
-         const shuffledListFilms = shuffleListFilms(response.data.films)
-         setFilms(shuffledListFilms)
-      } catch (e) {
-         alert(e)
-      }
-   }
+    useEffect(() => {
+      dispatch(shuffle())
+      console.log(currentFilmNumber);
+       console.log(shuffledListFilms);
+    }, [])
 
    return (
       <ThemeProvider theme={theme}>
