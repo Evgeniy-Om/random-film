@@ -1,11 +1,9 @@
 import {Box, createTheme, Grid} from "@material-ui/core"
 import {ThemeProvider} from "@material-ui/core/styles"
 import {Poster, NameFilm, RandomFilmButton, CountrySelect, GenreSelect, YearsSlider, RatingSlider} from "./components"
-import {useEffect, useState} from "react";
-import shuffleListFilms from "./features/shuffleListFilms";
-import top250ListFilms from "./features/top250ListFilms";
-import {useDispatch, useSelector} from "react-redux";
-import {numFilm, shuffle} from "./toolkitRedux/toolkitSlice";
+import {useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {shuffle} from "./toolkitRedux/toolkitSlice";
 
 
 const theme = createTheme({
@@ -18,14 +16,11 @@ const theme = createTheme({
 })
 
 function App() {
-   const {currentFilmNumber, shuffledListFilms} = useSelector(state => state.toolkit)
    const dispatch = useDispatch()
 
-    useEffect(() => {
+   useEffect(() => {
       dispatch(shuffle())
-      console.log(currentFilmNumber);
-       console.log(shuffledListFilms);
-    }, [])
+   },[dispatch])
 
    return (
       <ThemeProvider theme={theme}>
@@ -45,15 +40,7 @@ function App() {
                }}>
                   <Poster/>
                   <NameFilm/>
-                  <RandomFilmButton
-                     onClick={
-                        () => {
-                           if (currentFilmNumber < shuffledListFilms.length - 1) dispatch(numFilm())
-                           console.log(currentFilmNumber)
-                           console.log(shuffledListFilms)
-                        }
-                     }
-                  />
+                  <RandomFilmButton/>
                </Box>
                {/* Фильтры поиска*/}
                <Grid container sx={{
@@ -81,7 +68,6 @@ function App() {
          </Box>
       </ThemeProvider>
    )
-      ;
 }
 
 export default App;
