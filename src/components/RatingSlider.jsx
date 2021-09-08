@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {selectRating} from "../toolkitRedux/toolkitSlice";
+import {changeNumPageResponse, disableButton, isNewFilters, selectRating} from "../toolkitRedux/toolkitSlice";
 import {Box, Slider, Typography} from "@material-ui/core";
 
 const marks = [
@@ -19,6 +19,9 @@ function RatingSlider() {
 
    const handleChange = (event, newValue) => {
       dispatch(selectRating(newValue))
+      dispatch(isNewFilters(true))
+      dispatch(changeNumPageResponse())
+      dispatch(disableButton(false))
    }
 
    return (

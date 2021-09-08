@@ -4,7 +4,7 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import {Box} from "@material-ui/core"
 import {useDispatch, useSelector} from "react-redux"
-import {selectGenre} from "../toolkitRedux/toolkitSlice"
+import {changeNumPageResponse, disableButton, isNewFilters, selectGenre} from "../toolkitRedux/toolkitSlice"
 
 const genresList = [
    {id: 0, genre: "Все жанры"},
@@ -42,6 +42,9 @@ function GenreSelect() {
    const handleChange = (event) => {
       const selectedGenre = genresList.filter((data) => data.genre === event.target.value)[0]
       dispatch(selectGenre(selectedGenre))
+      dispatch(isNewFilters(true))
+      dispatch(changeNumPageResponse())
+      dispatch(disableButton(false))
    }
 
    return (

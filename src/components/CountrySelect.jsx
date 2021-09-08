@@ -4,7 +4,7 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import {Box} from "@material-ui/core"
 import {useDispatch, useSelector} from "react-redux"
-import {selectCountry} from "../toolkitRedux/toolkitSlice"
+import {changeNumPageResponse, disableButton, isNewFilters, selectCountry} from "../toolkitRedux/toolkitSlice"
 
 const countriesList = [
    {id: 0, country: "Все страны"},
@@ -26,12 +26,15 @@ const countriesList = [
 ]
 
 function CountrySelect() {
-   const country = useSelector(state => state.toolkit.selectedCountry)
+   const {selectedCountry} = useSelector(state => state.toolkit)
    const dispatch = useDispatch()
 
    const handleChange = (event) => {
-      const selectedCountry = countriesList.filter((data) => data.country === event.target.value)[0]
-      dispatch(selectCountry(selectedCountry))
+      const newSelectedCountry = countriesList.filter((data) => data.country === event.target.value)[0]
+      dispatch(selectCountry(newSelectedCountry))
+      dispatch(isNewFilters(true))
+      dispatch(changeNumPageResponse())
+      dispatch(disableButton(false))
    }
 
    return (
@@ -41,7 +44,7 @@ function CountrySelect() {
             <Select
                labelId="country-select-label"
                id="country-select"
-               value={country.country}
+               value={selectedCountry.country}
                label="Country"
                onChange={handleChange}
             >
