@@ -3,9 +3,9 @@ import {Skeleton} from "@material-ui/core";
 import {useSelector} from "react-redux";
 
 function Poster() {
-   const {currentFilmNumber, shuffledListFilms} = useSelector(state=> state.toolkit)
+   const {currentFilmNumber, listFilms} = useSelector(state=> state.toolkit)
    const [isLoaded, setIsLoaded] = useState(false)
-   const src = shuffledListFilms[currentFilmNumber].posterUrlPreview
+   const src = listFilms[currentFilmNumber].posterUrlPreview
 
 
    useEffect(() => {
