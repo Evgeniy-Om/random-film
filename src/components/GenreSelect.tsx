@@ -5,6 +5,8 @@ import Select from '@material-ui/core/Select'
 import {Box} from "@material-ui/core"
 import {useDispatch, useSelector} from "react-redux"
 import {changeNumPageResponse, disableButton, isNewFilters, selectGenre} from "../toolkitRedux/toolkitSlice"
+import {ChangeEvent} from "react"
+import {RootState} from "../toolkitRedux"
 
 const genresList = [
    {id: 0, genre: "Все жанры"},
@@ -36,11 +38,14 @@ const genresList = [
 ]
 
 function GenreSelect() {
-   const genre = useSelector(state => state.toolkit.selectedGenre)
+   const {selectedGenre} = useSelector((state: RootState) => state.toolkit)
    const dispatch = useDispatch()
 
-   const handleChange = (event) => {
-      const selectedGenre = genresList.filter((data) => data.genre === event.target.value)[0]
+   const handleChange = (event: ChangeEvent<{value: string}>) => {
+      const selectedGenre =
+          genresList.filter(
+              (data) => data.genre === event.target.value
+          )[0]
       dispatch(selectGenre(selectedGenre))
       dispatch(isNewFilters(true))
       dispatch(changeNumPageResponse())
@@ -54,7 +59,7 @@ function GenreSelect() {
             <Select
                labelId="genre-select-label"
                id="genre-select"
-               value={genre.genre}
+               value={selectedGenre.genre}
                label="Genre"
                onChange={handleChange}
             >

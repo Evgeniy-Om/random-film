@@ -1,8 +1,9 @@
 import {Box, Skeleton, Typography} from "@material-ui/core"
 import {useSelector} from "react-redux"
+import {RootState} from "../toolkitRedux"
 
 function NameFilm() {
-   const {currentFilmNumber, listFilms} = useSelector(state => state.toolkit)
+   const {currentFilmNumber, listFilms} = useSelector((state: RootState) => state.toolkit)
    const {nameRu, year, rating} = listFilms[currentFilmNumber]
    return (
       <Box sx={{margin: '20px 0 30px'}}>

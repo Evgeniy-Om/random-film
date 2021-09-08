@@ -1,7 +1,7 @@
 import {Button} from "@material-ui/core"
 import {useDispatch, useSelector} from "react-redux"
 import {addFilmsToList, changeNumPageResponse, disableButton, fetchFilms, numFilm} from "../toolkitRedux/toolkitSlice"
-import {useEffect, useState} from "react";
+import {RootState} from "../toolkitRedux"
 
 function RandomFilmButton() {
    const {
@@ -11,7 +11,7 @@ function RandomFilmButton() {
       currentPageResponse,
       totalPagesResponse,
       isDisabledRandomFilmButton
-   } = useSelector(state => state.toolkit)
+   } = useSelector((state: RootState) => state.toolkit)
    const dispatch = useDispatch()
 
    const handleClick = () => {

@@ -1,9 +1,10 @@
 import {useEffect, useState} from "react";
 import {Skeleton} from "@material-ui/core";
 import {useSelector} from "react-redux";
+import {RootState} from "../toolkitRedux"
 
 function Poster() {
-   const {currentFilmNumber, listFilms} = useSelector(state=> state.toolkit)
+   const {currentFilmNumber, listFilms} = useSelector((state: RootState) => state.toolkit)
    const [isLoaded, setIsLoaded] = useState(false)
    const src = listFilms[currentFilmNumber].posterUrlPreview
 
@@ -22,7 +23,7 @@ function Poster() {
               style={{display: isLoaded ? 'block' : 'none'}}
          />
          <Skeleton
-            variant="rectangle"
+            variant="rectangular"
             animation="wave"
             width={250}
             height={350}

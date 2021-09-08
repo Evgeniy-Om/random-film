@@ -1,6 +1,7 @@
-import {useDispatch, useSelector} from "react-redux";
-import {changeNumPageResponse, disableButton, isNewFilters, selectRating} from "../toolkitRedux/toolkitSlice";
-import {Box, Slider, Typography} from "@material-ui/core";
+import {useDispatch, useSelector} from "react-redux"
+import {changeNumPageResponse, disableButton, isNewFilters, selectRating} from "../toolkitRedux/toolkitSlice"
+import {Box, Slider, Typography} from "@material-ui/core"
+import {RootState} from "../toolkitRedux"
 
 const marks = [
    {
@@ -14,11 +15,11 @@ const marks = [
 ]
 
 function RatingSlider() {
-   const {selectedRating} = useSelector(state => state.toolkit)
+   const {selectedRating} = useSelector((state: RootState) => state.toolkit)
    const dispatch = useDispatch()
 
-   const handleChange = (event, newValue) => {
-      dispatch(selectRating(newValue))
+   const handleChange = (event: Event, value: number | number[]) => {
+      dispatch(selectRating(value))
       dispatch(isNewFilters(true))
       dispatch(changeNumPageResponse())
       dispatch(disableButton(false))

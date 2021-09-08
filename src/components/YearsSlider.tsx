@@ -1,6 +1,7 @@
 import {Box, Slider, Typography} from "@material-ui/core"
 import {useDispatch, useSelector} from "react-redux"
 import {changeNumPageResponse, disableButton, isNewFilters, selectYears} from "../toolkitRedux/toolkitSlice"
+import {RootState} from "../toolkitRedux"
 
 const thisYear = (new Date()).getFullYear()
 const marks = [
@@ -15,11 +16,11 @@ const marks = [
 ]
 
 function YearsSlider() {
-   const {selectedYears} = useSelector(state => state.toolkit)
+   const {selectedYears} = useSelector((state: RootState) => state.toolkit)
    const dispatch = useDispatch()
 
-   const handleChange = (event, newValue) => {
-      dispatch(selectYears(newValue))
+   const handleChange = (event: Event, value: number | number[]) => {
+      dispatch(selectYears(value))
       dispatch(isNewFilters(true))
       dispatch(changeNumPageResponse())
       dispatch(disableButton(false))

@@ -4,6 +4,7 @@ import {Poster, NameFilm, RandomFilmButton, CountrySelect, GenreSelect, YearsSli
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {shuffle} from "./toolkitRedux/toolkitSlice";
+import {RootState} from "./toolkitRedux"
 
 
 const theme = createTheme({
@@ -16,7 +17,7 @@ const theme = createTheme({
 })
 
 function App() {
-   const {listFilms, currentPageResponse, status, error} = useSelector(state => state.toolkit)
+   const {listFilms, currentPageResponse, status, error} = useSelector((state: RootState) => state.toolkit)
    const dispatch = useDispatch()
 
    useEffect(() => {
@@ -38,14 +39,15 @@ function App() {
             flexDirection: 'column',
             justifyContent: 'center',
             height: '100vh',
-            label: '1'
+            // Typescript похоже не поддерживает label
+            // label: '1'
          }}>
             <div>
                <Box sx={{
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  label: '2'
+                  // label: '2'
                }}>
                   <Poster/>
                   <NameFilm/>
