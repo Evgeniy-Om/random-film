@@ -2,7 +2,7 @@ import {Box, createTheme, Grid} from "@material-ui/core"
 import {ThemeProvider} from "@material-ui/core/styles"
 import {Poster, NameFilm, RandomFilmButton, CountrySelect, GenreSelect, YearsSlider, RatingSlider} from "./components"
 import {useEffect} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {shuffle} from "./toolkitRedux/toolkitSlice";
 
 
@@ -16,11 +16,20 @@ const theme = createTheme({
 })
 
 function App() {
+   const {listFilms, currentPageResponse, status, error} = useSelector(state => state.toolkit)
    const dispatch = useDispatch()
 
    useEffect(() => {
       dispatch(shuffle())
-   },[dispatch])
+   }, [dispatch])
+
+   useEffect(() => {
+      console.log(listFilms)
+   }, [listFilms])
+
+   useEffect(() => {
+      console.log(`currentPageResponse: ${currentPageResponse}`)
+   }, [currentPageResponse])
 
    return (
       <ThemeProvider theme={theme}>
@@ -41,6 +50,8 @@ function App() {
                   <Poster/>
                   <NameFilm/>
                   <RandomFilmButton/>
+                  {status === 'loading' && <h2>Загружается ....</h2>}
+                  {error && <h2>Ошибка: {error}</h2>}
                </Box>
                {/* Фильтры поиска*/}
                <Grid container sx={{
