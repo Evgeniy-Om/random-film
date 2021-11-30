@@ -1,6 +1,6 @@
 import top250ListFilms from "./top250ListFilms";
 
-const initialState = {
+const initialState: InitialStateTypes = {
    selectedCountry: {id: 0, country: "Все страны"},
    selectedGenre: {id: 0, genre: "Все жанры"},
    selectedYears: [1920, (new Date()).getFullYear()],
@@ -17,3 +17,19 @@ const initialState = {
 }
 
 export default initialState
+
+export type InitialStateTypes = {
+   selectedCountry: {id: number, country: string}
+   selectedGenre: {id: number, genre: string}
+   selectedYears: [number, number]
+   selectedRating: [number, number]
+   currentFilmNumber: number
+   listFilms: typeof top250ListFilms
+   isChangedFilters: boolean
+   currentPageResponse: number
+   totalPagesResponse: number
+   totalFilteredFilms: number
+   isDisabledRandomFilmButton: boolean
+   status: null | string
+   error: null | string
+}
