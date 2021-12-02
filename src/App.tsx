@@ -1,10 +1,16 @@
 import {Box, createTheme, Grid} from "@material-ui/core"
 import {ThemeProvider} from "@material-ui/core/styles"
-import {Poster, NameFilm, RandomFilmButton, CountrySelect, GenreSelect, YearsSlider, RatingSlider} from "./components"
-import {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {shuffle} from "./toolkitRedux/toolkitSlice";
+import {useEffect} from "react"
+import {useDispatch, useSelector} from "react-redux"
+import {shuffle} from "./toolkitRedux/toolkitSlice"
 import {RootState} from "./toolkitRedux"
+import GenreSelect from "./components/GenreSelect"
+import NameFilm from "./components/NameFilm"
+import CountrySelect from "./components/CountrySelect"
+import YearsSlider from "./components/YearsSlider"
+import Poster from "./components/Poster"
+import RandomFilmButton from "./components/RandomFilmButton"
+import RatingSlider from "./components/RatingSlider"
 
 
 const theme = createTheme({

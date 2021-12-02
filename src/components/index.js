@@ -1,7 +1,0 @@
-export {default as Poster} from "./Poster"
-export {default as NameFilm} from "./NameFilm"
-export {default as RandomFilmButton} from "./RandomFilmButton"
-export {default as CountrySelect} from "./CountrySelect"
-export {default as GenreSelect} from "./GenreSelect"
-export {default as YearsSlider} from "./YearsSlider"
-export {default as RatingSlider} from "./RatingSlider"
