@@ -1,7 +1,8 @@
-import {Button} from "@material-ui/core"
-import {useDispatch, useSelector} from "react-redux"
-import {addFilmsToList, changeNumPageResponse, disableButton, fetchFilms, numFilm} from "../toolkitRedux/toolkitSlice"
-import {RootState} from "../toolkitRedux"
+import {Button} from '@material-ui/core'
+import {useDispatch} from 'react-redux'
+import {addFilmsToList, fetchFilms} from '../toolkitRedux/toolkitSlice'
+import {kinopoiskSlice} from '../store/reducers/kinopoiskSlice'
+import {useAppSelector} from '../hooks/redux'
 
 function RandomFilmButton() {
    const {
@@ -11,7 +12,19 @@ function RandomFilmButton() {
       currentPageResponse,
       totalPagesResponse,
       isDisabledRandomFilmButton
-   } = useSelector((state: RootState) => state.toolkit)
+   } = useAppSelector(state => state.kinopoisk)
+   const {
+      selectCountry,
+      selectGenre,
+      selectYears,
+      selectRating,
+      shuffle,
+      numFilm,
+      isNewFilters,
+      changeNumPageResponse,
+      addFilms,
+      disableButton
+   } = kinopoiskSlice.actions
    const dispatch = useDispatch()
 
    const handleClick = () => {
