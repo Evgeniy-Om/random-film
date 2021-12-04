@@ -10,7 +10,7 @@ import Poster from './components/Poster'
 import RandomFilmButton from './components/RandomFilmButton'
 import RatingSlider from './components/RatingSlider'
 import {useAppSelector} from './hooks/redux'
-import {kinopoiskSlice} from './store/reducers/kinopoiskSlice'
+import {kinopoiskSlice} from './store/kinopoiskSlice'
 
 
 const theme = createTheme({
