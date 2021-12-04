@@ -1,0 +1,16 @@
+.root {
+  padding: 10px 150px;
+  &.root {
+    padding: 10px 50px;
+  }
+
+  &.MuiButtonBase-root {
+    padding: 100px 50px;
+    color: yellow;
+  }
+
+  &.MuiButton-root {
+    padding: 100px 50px;
+    color: green;
+  }
+}
