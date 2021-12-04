@@ -1,5 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
-import {fetchParamsTypes, InitialStateTypes} from '../types'
+import {FetchParamsTypes, InitialStateTypes} from '../types'
 import axios from 'axios'
 import {kinopoiskSlice} from './kinopoiskSlice'
 
@@ -15,7 +15,7 @@ export const fetchFilms = createAsyncThunk(
             totalPagesResponse
         } = getState() as InitialStateTypes
 
-        const fetchParams: fetchParamsTypes = {
+        const fetchParams: FetchParamsTypes = {
             ratingFrom: selectedRating[0],
             ratingTo: selectedRating[1],
             yearFrom: selectedYears[0],
@@ -62,7 +62,7 @@ export const addFilmsToList = createAsyncThunk(
             currentPageResponse
         } = getState() as InitialStateTypes
 
-        const fetchParams: fetchParamsTypes = {
+        const fetchParams: FetchParamsTypes = {
             ratingFrom: selectedRating[0],
             ratingTo: selectedRating[1],
             yearFrom: selectedYears[0],

@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {store} from "./toolkitRedux";
 import {Provider} from "react-redux";
+import {setupStore} from './store/store'
 
 
 ReactDOM.render(
-   <Provider store={store}>
+   <Provider store={setupStore()}>
       <App/>
    </Provider>
    ,

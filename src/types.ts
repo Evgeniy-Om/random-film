@@ -21,7 +21,7 @@ export type InitialStateTypes = {
     error: null | string
 }
 
-export type fetchParamsTypes = {
+export type FetchParamsTypes = {
     ratingFrom: number
     ratingTo: number
     yearFrom: number
@@ -30,4 +30,8 @@ export type fetchParamsTypes = {
     page: number
     countryId?: number
     genreId?: number
+}
+
+export type ListFilmsTypes = {
+    
 }
