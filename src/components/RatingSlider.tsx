@@ -1,7 +1,7 @@
 import {useDispatch} from 'react-redux'
-import {Box, Slider, Typography} from '@material-ui/core'
 import {useAppSelector} from '../hooks/redux'
 import {kinopoiskSlice} from '../store/kinopoiskSlice'
+import {Box, Slider, Typography} from '@mui/material'
 
 const marks = [
    {

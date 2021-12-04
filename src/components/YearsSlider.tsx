@@ -1,7 +1,7 @@
-import {Box, Slider, Typography} from '@material-ui/core'
 import {useDispatch} from 'react-redux'
 import {useAppSelector} from '../hooks/redux'
 import {kinopoiskSlice} from '../store/kinopoiskSlice'
+import {Box, Slider, Typography} from '@mui/material'
 
 const thisYear = (new Date()).getFullYear()
 const marks = [

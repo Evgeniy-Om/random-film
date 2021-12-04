@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
-import {Skeleton} from '@material-ui/core'
 import {useAppSelector} from '../hooks/redux'
+import {Skeleton} from '@mui/material'
 
 function Poster() {
 

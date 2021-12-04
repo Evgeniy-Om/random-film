@@ -1,10 +1,12 @@
-import {Button} from '@material-ui/core'
 import {useDispatch} from 'react-redux'
-import {useAppSelector} from '../hooks/redux'
-import {kinopoiskSlice} from '../store/kinopoiskSlice'
-import {addFilmsToList, fetchFilms} from '../store/kinopoiskAsyncThunks'
+import {useAppSelector} from '../../hooks/redux'
+import {kinopoiskSlice} from '../../store/kinopoiskSlice'
+import {addFilmsToList, fetchFilms} from '../../store/kinopoiskAsyncThunks'
+import styles from './RandomFilmButton.module.scss';
+import {Button} from '@mui/material'
 
 function RandomFilmButton() {
+    console.log(styles)
     const {
         currentFilmNumber,
         listFilms,
@@ -36,14 +38,10 @@ function RandomFilmButton() {
 
     return (
         <Button
+            className={styles.root}
             disabled={isDisabledRandomFilmButton}
             onClick={handleClick}
             variant="contained"
-            sx={{
-                '&.MuiButton-root': {
-                    padding: '10px 50px'
-                }
-            }}
         >
             Случайный фильм
         </Button>

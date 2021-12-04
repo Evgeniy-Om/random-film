@@ -1,12 +1,7 @@
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import {Box} from '@material-ui/core'
 import {useDispatch} from 'react-redux'
-import {ChangeEvent} from 'react'
 import {kinopoiskSlice} from '../store/kinopoiskSlice'
 import {useAppSelector} from '../hooks/redux'
+import {Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material'
 
 const countriesList = [
     {id: 0, country: "Все страны"},
@@ -32,7 +27,7 @@ function CountrySelect() {
     const {changeNumPageResponse, disableButton, isNewFilters, selectCountry} = kinopoiskSlice.actions
     const dispatch = useDispatch()
 
-    const handleChange = (event: ChangeEvent<{value: string}>) => {
+    const handleChange = (event: SelectChangeEvent) => {
         console.log(event)
         const newSelectedCountry =
             countriesList.filter(

@@ -1,5 +1,5 @@
-import {Box, Skeleton, Typography} from '@material-ui/core'
 import {useAppSelector} from '../hooks/redux'
+import {Box, Skeleton, Typography} from '@mui/material'
 
 function NameFilm() {
    const {currentFilmNumber, listFilms} = useAppSelector(state => state.kinopoisk)
