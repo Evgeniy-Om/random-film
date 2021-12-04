@@ -2,11 +2,11 @@ import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
-import {Box} from "@material-ui/core"
-import {useDispatch, useSelector} from "react-redux"
-import {changeNumPageResponse, disableButton, isNewFilters, selectCountry} from "../toolkitRedux/toolkitSlice"
-import {RootState} from "../toolkitRedux"
-import {ChangeEvent} from "react"
+import {Box} from '@material-ui/core'
+import {useDispatch} from 'react-redux'
+import {ChangeEvent} from 'react'
+import {kinopoiskSlice} from '../store/kinopoiskSlice'
+import {useAppSelector} from '../hooks/redux'
 
 const countriesList = [
     {id: 0, country: "Все страны"},
@@ -28,7 +28,8 @@ const countriesList = [
 ]
 
 function CountrySelect() {
-    const {selectedCountry} = useSelector((state: RootState) => state.toolkit)
+    const {selectedCountry} = useAppSelector(state => state.kinopoisk)
+    const {changeNumPageResponse, disableButton, isNewFilters, selectCountry} = kinopoiskSlice.actions
     const dispatch = useDispatch()
 
     const handleChange = (event: ChangeEvent<{value: string}>) => {

@@ -1,7 +1,7 @@
-import {Box, Slider, Typography} from "@material-ui/core"
-import {useDispatch, useSelector} from "react-redux"
-import {changeNumPageResponse, disableButton, isNewFilters, selectYears} from "../toolkitRedux/toolkitSlice"
-import {RootState} from "../toolkitRedux"
+import {Box, Slider, Typography} from '@material-ui/core'
+import {useDispatch} from 'react-redux'
+import {useAppSelector} from '../hooks/redux'
+import {kinopoiskSlice} from '../store/kinopoiskSlice'
 
 const thisYear = (new Date()).getFullYear()
 const marks = [
@@ -16,11 +16,12 @@ const marks = [
 ]
 
 function YearsSlider() {
-   const {selectedYears} = useSelector((state: RootState) => state.toolkit)
+   const {selectedYears} = useAppSelector(state => state.kinopoisk)
+   const {changeNumPageResponse, disableButton, isNewFilters, selectYears} = kinopoiskSlice.actions
    const dispatch = useDispatch()
 
    const handleChange = (event: Event, value: number | number[]) => {
-      dispatch(selectYears(value))
+      dispatch(selectYears(value as [number, number]))
       dispatch(isNewFilters(true))
       dispatch(changeNumPageResponse())
       dispatch(disableButton(false))

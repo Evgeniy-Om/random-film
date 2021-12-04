@@ -1,10 +1,10 @@
-import {useEffect, useState} from "react";
-import {Skeleton} from "@material-ui/core";
-import {useSelector} from "react-redux";
-import {RootState} from "../toolkitRedux"
+import {useEffect, useState} from 'react'
+import {Skeleton} from '@material-ui/core'
+import {useAppSelector} from '../hooks/redux'
 
 function Poster() {
-   const {currentFilmNumber, listFilms} = useSelector((state: RootState) => state.toolkit)
+
+   const {currentFilmNumber, listFilms} = useAppSelector(state => state.kinopoisk)
    const [isLoaded, setIsLoaded] = useState(false)
    const src = listFilms[currentFilmNumber].posterUrlPreview
 

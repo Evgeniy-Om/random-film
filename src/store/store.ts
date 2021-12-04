@@ -1,5 +1,5 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit'
-import kinopoiskSlice from './reducers/kinopoiskSlice'
+import kinopoiskSlice from './kinopoiskSlice'
 
 export const rootReducer = combineReducers({
     kinopoisk: kinopoiskSlice,

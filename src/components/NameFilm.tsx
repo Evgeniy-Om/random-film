@@ -1,9 +1,8 @@
-import {Box, Skeleton, Typography} from "@material-ui/core"
-import {useSelector} from "react-redux"
-import {RootState} from "../toolkitRedux"
+import {Box, Skeleton, Typography} from '@material-ui/core'
+import {useAppSelector} from '../hooks/redux'
 
 function NameFilm() {
-   const {currentFilmNumber, listFilms} = useSelector((state: RootState) => state.toolkit)
+   const {currentFilmNumber, listFilms} = useAppSelector(state => state.kinopoisk)
    const {nameRu, year, rating} = listFilms[currentFilmNumber]
    return (
       <Box sx={{margin: '20px 0 30px'}}>

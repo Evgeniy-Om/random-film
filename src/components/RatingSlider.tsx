@@ -1,7 +1,7 @@
-import {useDispatch, useSelector} from "react-redux"
-import {changeNumPageResponse, disableButton, isNewFilters, selectRating} from "../toolkitRedux/toolkitSlice"
-import {Box, Slider, Typography} from "@material-ui/core"
-import {RootState} from "../toolkitRedux"
+import {useDispatch} from 'react-redux'
+import {Box, Slider, Typography} from '@material-ui/core'
+import {useAppSelector} from '../hooks/redux'
+import {kinopoiskSlice} from '../store/kinopoiskSlice'
 
 const marks = [
    {
@@ -15,11 +15,12 @@ const marks = [
 ]
 
 function RatingSlider() {
-   const {selectedRating} = useSelector((state: RootState) => state.toolkit)
+   const {selectedRating} = useAppSelector(state => state.kinopoisk)
+   const {changeNumPageResponse, disableButton, isNewFilters, selectRating} = kinopoiskSlice.actions
    const dispatch = useDispatch()
 
    const handleChange = (event: Event, value: number | number[]) => {
-      dispatch(selectRating(value))
+      dispatch(selectRating(value as [number, number]))
       dispatch(isNewFilters(true))
       dispatch(changeNumPageResponse())
       dispatch(disableButton(false))

@@ -2,11 +2,11 @@ import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
-import {Box} from "@material-ui/core"
-import {useDispatch, useSelector} from "react-redux"
-import {changeNumPageResponse, disableButton, isNewFilters, selectGenre} from "../toolkitRedux/toolkitSlice"
-import {ChangeEvent} from "react"
-import {RootState} from "../toolkitRedux"
+import {Box} from '@material-ui/core'
+import {useDispatch} from 'react-redux'
+import {ChangeEvent} from 'react'
+import {useAppSelector} from '../hooks/redux'
+import {kinopoiskSlice} from '../store/kinopoiskSlice'
 
 const genresList = [
    {id: 0, genre: "Все жанры"},
@@ -38,7 +38,8 @@ const genresList = [
 ]
 
 function GenreSelect() {
-   const {selectedGenre} = useSelector((state: RootState) => state.toolkit)
+   const {isNewFilters, changeNumPageResponse, disableButton, selectGenre} = kinopoiskSlice.actions
+   const {selectedGenre} = useAppSelector(state => state.kinopoisk)
    const dispatch = useDispatch()
 
    const handleChange = (event: ChangeEvent<{value: string}>) => {
