@@ -1,7 +1,7 @@
 import {useDispatch} from 'react-redux'
 import {kinopoiskSlice} from '../store/kinopoiskSlice'
 import {useAppSelector} from '../hooks/redux'
-import {Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material'
+import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material'
 
 const countriesList = [
     {id: 0, country: "Все страны"},
@@ -40,7 +40,7 @@ function CountrySelect() {
     }
 
     return (
-        <Box mt={10}>
+        <div>
             <FormControl fullWidth>
                 <InputLabel id="country-select-label">Страна</InputLabel>
                 <Select
@@ -60,7 +60,7 @@ function CountrySelect() {
                     ))}
                 </Select>
             </FormControl>
-        </Box>
+        </div>
     )
 }
 

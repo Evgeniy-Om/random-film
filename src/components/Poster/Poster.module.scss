@@ -1,0 +1,17 @@
+.poster {
+  display: block;
+
+  &Disabled {
+    display: none;
+  }
+}
+
+.skeleton {
+  display: block;
+  width: 250px;
+  height: 350px;
+
+  &Disabled {
+    display: none;
+  }
+}

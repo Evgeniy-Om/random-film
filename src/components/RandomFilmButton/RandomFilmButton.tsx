@@ -2,11 +2,10 @@ import {useDispatch} from 'react-redux'
 import {useAppSelector} from '../../hooks/redux'
 import {kinopoiskSlice} from '../../store/kinopoiskSlice'
 import {addFilmsToList, fetchFilms} from '../../store/kinopoiskAsyncThunks'
-import styles from './RandomFilmButton.module.scss';
+import styles from './RandomFilmButton.module.scss'
 import {Button} from '@mui/material'
 
 function RandomFilmButton() {
-    console.log(styles)
     const {
         currentFilmNumber,
         listFilms,
@@ -38,7 +37,7 @@ function RandomFilmButton() {
 
     return (
         <Button
-            className={styles.root}
+            className={styles._}
             disabled={isDisabledRandomFilmButton}
             onClick={handleClick}
             variant="contained"

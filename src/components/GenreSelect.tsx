@@ -1,7 +1,7 @@
 import {useDispatch} from 'react-redux'
 import {useAppSelector} from '../hooks/redux'
 import {kinopoiskSlice} from '../store/kinopoiskSlice'
-import {Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material'
+import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material'
 
 const genresList = [
    {id: 0, genre: "Все жанры"},
@@ -49,7 +49,7 @@ function GenreSelect() {
    }
 
    return (
-      <Box mt={10}>
+      <div>
          <FormControl fullWidth>
             <InputLabel id="genre-select-label">Жанр</InputLabel>
             <Select
@@ -69,7 +69,7 @@ function GenreSelect() {
                ))}
             </Select>
          </FormControl>
-      </Box>
+      </div>
    );
 }
 

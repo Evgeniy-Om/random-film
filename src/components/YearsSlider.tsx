@@ -1,7 +1,7 @@
 import {useDispatch} from 'react-redux'
 import {useAppSelector} from '../hooks/redux'
 import {kinopoiskSlice} from '../store/kinopoiskSlice'
-import {Box, Slider, Typography} from '@mui/material'
+import {Slider} from '@mui/material'
 
 const thisYear = (new Date()).getFullYear()
 const marks = [
@@ -28,8 +28,8 @@ function YearsSlider() {
    }
 
    return (
-      <Box ml={10} mr={10}>
-         <Typography mb={10} ml={-10}>Год</Typography>
+       <div className="slider-wrapper">
+         <div className="slider-title">Год</div>
          <Slider
             value={[selectedYears[0], selectedYears[1]]}
             onChange={handleChange}
@@ -40,7 +40,7 @@ function YearsSlider() {
             min={marks[0].value}
             max={marks[1].value}
          />
-      </Box>
+      </div>
    )
 }
 

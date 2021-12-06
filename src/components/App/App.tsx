@@ -1,15 +1,16 @@
 import {useEffect} from 'react'
 import {useDispatch} from 'react-redux'
 import GenreSelect from '../GenreSelect'
-import NameFilm from '../NameFilm'
+import NameFilm from '../NameFilm/NameFilm'
 import CountrySelect from '../CountrySelect'
 import YearsSlider from '../YearsSlider'
-import Poster from '../Poster'
+import Poster from '../Poster/Poster'
 import RandomFilmButton from '../RandomFilmButton/RandomFilmButton'
 import RatingSlider from '../RatingSlider'
 import {useAppSelector} from '../../hooks/redux'
 import {kinopoiskSlice} from '../../store/kinopoiskSlice'
-import {Box, createTheme, Grid, ThemeProvider} from '@mui/material'
+import {createTheme, ThemeProvider} from '@mui/material'
+import styles from './App.module.scss'
 
 
 const theme = createTheme({
@@ -40,51 +41,24 @@ function App() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                height: '100vh',
-                // Typescript похоже не поддерживает label
-                // label: '1'
-            }}>
-                <div>
-                    <Box sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        // label: '2'
-                    }}>
+            <div className={styles.wrapper}>
+                <div className={styles.container}>
+                    <div className={styles.posterTitleButtonWrapper}>
                         <Poster/>
                         <NameFilm/>
                         <RandomFilmButton/>
                         {status === 'loading' && <h2>Загружается ....</h2>}
                         {error && <h2>Ошибка: {error}</h2>}
-                    </Box>
+                    </div>
                     {/* Фильтры поиска*/}
-                    <Grid container sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        margin: '30px auto 0',
-                        maxWidth: '1400px',
-                    }}>
-                        <Grid item container columnSpacing={25} rowSpacing={30} xs={12} sm={10} md={7} lg={6}>
-                            <Grid item xs={6} md={6}>
-                                <CountrySelect/>
-                            </Grid>
-                            <Grid item xs={6} md={6}>
-                                <GenreSelect/>
-                            </Grid>
-                            <Grid item xs={6} md={6}>
-                                <YearsSlider/>
-                            </Grid>
-                            <Grid item xs={6} md={6}>
-                                <RatingSlider/>
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                    <div className={styles.inputsWrapper}>
+                        <CountrySelect/>
+                        <GenreSelect/>
+                        <YearsSlider/>
+                        <RatingSlider/>
+                    </div>
                 </div>
-            </Box>
+            </div>
         </ThemeProvider>
     )
 }

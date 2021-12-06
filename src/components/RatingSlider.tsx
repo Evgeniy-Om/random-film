@@ -1,7 +1,7 @@
 import {useDispatch} from 'react-redux'
 import {useAppSelector} from '../hooks/redux'
 import {kinopoiskSlice} from '../store/kinopoiskSlice'
-import {Box, Slider, Typography} from '@mui/material'
+import {Slider} from '@mui/material'
 
 const marks = [
    {
@@ -27,8 +27,8 @@ function RatingSlider() {
    }
 
    return (
-      <Box ml={10} mr={10}>
-         <Typography mb={10} ml={-10}>Рейтинг</Typography>
+       <div className="slider-wrapper">
+         <div className="slider-title">Рейтинг</div>
          <Slider
             value={[selectedRating[0], selectedRating[1]]}
             onChange={handleChange}
@@ -39,7 +39,7 @@ function RatingSlider() {
             min={marks[0].value}
             max={marks[1].value}
          />
-      </Box>
+      </div>
    )
 }
 
