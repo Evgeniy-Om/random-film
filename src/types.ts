@@ -28,8 +28,8 @@ export type FetchParamsTypes = {
     yearTo: number
     order: string
     page: number
-    countryId?: number
-    genreId?: number
+    country?: number
+    genre?: number
 }
 
 export type ListFilmsTypes = {

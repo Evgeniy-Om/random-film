@@ -19,6 +19,7 @@ function RandomFilmButton() {
 
     const handleClick = () => {
         if (isChangedFilters) { // Пользователь поменял фильтры
+            console.log("clicked")
             dispatch(fetchFilms()) // warning
         } else {
             if (currentFilmNumber < listFilms.length - 1) dispatch(numFilm()) //

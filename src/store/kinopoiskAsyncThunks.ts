@@ -7,13 +7,15 @@ export const fetchFilms = createAsyncThunk(
     'kinopoisk/fetchFilms',
     async function (_, {dispatch, getState, rejectWithValue}) {
         const {isNewFilters} = kinopoiskSlice.actions
+
+        const {kinopoisk} = getState() as {kinopoisk: InitialStateTypes}
         const {
             selectedCountry,
             selectedGenre,
             selectedRating,
             selectedYears,
             totalPagesResponse
-        } = getState() as InitialStateTypes
+        } = kinopoisk
 
         const fetchParams: FetchParamsTypes = {
             ratingFrom: selectedRating[0],
@@ -23,9 +25,11 @@ export const fetchFilms = createAsyncThunk(
             order: 'NUM_VOTE',
             page: totalPagesResponse
         }
-        if (selectedCountry.id !== 0) fetchParams.countryId = selectedCountry.id
-        if (selectedGenre.id !== 0) fetchParams.genreId = selectedGenre.id
+
+        if (selectedCountry.id !== 0) fetchParams.country = selectedCountry.id
+        if (selectedGenre.id !== 0) fetchParams.genre = selectedGenre.id
         try {
+            console.log('1111')
             const response = await axios({
                 url: `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters`,
                 params: fetchParams,
@@ -70,8 +74,8 @@ export const addFilmsToList = createAsyncThunk(
             order: 'NUM_VOTE',
             page: currentPageResponse
         }
-        if (selectedCountry.id !== 0) fetchParams.countryId = selectedCountry.id
-        if (selectedGenre.id !== 0) fetchParams.genreId = selectedGenre.id
+        if (selectedCountry.id !== 0) fetchParams.country = selectedCountry.id
+        if (selectedGenre.id !== 0) fetchParams.genre = selectedGenre.id
         const response = await axios({
             url: `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters`,
             params: fetchParams,
