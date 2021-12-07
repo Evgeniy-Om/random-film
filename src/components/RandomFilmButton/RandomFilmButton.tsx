@@ -13,7 +13,8 @@ function RandomFilmButton() {
         isChangedFilters,
         currentPageResponse,
         totalPagesResponse,
-        isDisabledRandomFilmButton
+        isDisabledRandomFilmButton,
+        status
     } = useAppSelector(state => state.kinopoisk)
     const {numFilm, changeNumPageResponse, disableButton} = kinopoiskSlice.actions
     const dispatch = useDispatch()
@@ -58,14 +59,34 @@ function RandomFilmButton() {
 
 
     return (
-        <Button
-            className={styles._}
-            disabled={isDisabledRandomFilmButton}
-            onClick={handleClick}
-            variant="contained"
-        >
-            Случайный фильм
-        </Button>
+        <div>
+            {
+                isChangedFilters && <div>
+                    <Button
+                        className={styles._}
+                        disabled={isDisabledRandomFilmButton}
+                        onClick={handleClick}
+                        variant="contained"
+                    >
+                        Новый поиск
+                    </Button>
+                    {
+                        status === 'loading' &&
+                        <CircularProgress className={styles.spinner} size={30}/>
+                    }
+                </div>
+            }
+            {
+                !isChangedFilters && <Button
+                    className={styles._}
+                    disabled={isDisabledRandomFilmButton}
+                    onClick={handleClick}
+                    variant="contained"
+                >
+                    Случайный фильм
+                </Button>
+            }
+        </div>
     )
 }
 

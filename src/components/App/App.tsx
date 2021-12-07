@@ -13,7 +13,7 @@ import styles from './App.module.scss'
 
 
 function App() {
-    const {status, error} = useAppSelector(state => state.kinopoisk)
+    const {error} = useAppSelector(state => state.kinopoisk)
     const {shuffle} = kinopoiskSlice.actions
     const dispatch = useDispatch()
 
@@ -28,7 +28,6 @@ function App() {
                     <Poster/>
                     <NameFilm/>
                     <RandomFilmButton/>
-                    {status === 'loading' && <h2>Загружается ....</h2>}
                     {error && <h2>Ошибка: {error}</h2>}
                 </div>
                 {/* Фильтры поиска*/}
