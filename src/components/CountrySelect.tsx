@@ -14,7 +14,7 @@ const countriesList = [
     {id: 15, country: "Испания"},
     {id: 14, country: "Италия"},
     {id: 6, country: "Канада"},
-    {id: 31, country: "Китай", addId: 28},
+    {id: 28, country: "Китай", addId: 31},
     {id: 26, country: "Корея Южная"},
     {id: 17, country: "Мексика"},
     {id: 8, country: "Франция"},
@@ -28,7 +28,6 @@ function CountrySelect() {
     const dispatch = useDispatch()
 
     const handleChange = (event: SelectChangeEvent) => {
-        console.log(event)
         const newSelectedCountry =
             countriesList.filter(
                 (data) => data.country === event.target.value

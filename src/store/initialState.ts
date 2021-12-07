@@ -6,7 +6,7 @@ const initialState: InitialStateTypes = {
     selectedGenre: {id: 0, genre: "Все жанры"},
     selectedYears: [1920, (new Date()).getFullYear()],
     selectedRating: [0, 10],
-    currentFilmNumber: 1,
+    currentFilmNumber: 0,
     listFilms: top250ListFilms,
     isChangedFilters: false,
     currentPageResponse: 1,

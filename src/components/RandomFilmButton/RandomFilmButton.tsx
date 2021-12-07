@@ -1,7 +1,7 @@
 import {useDispatch} from 'react-redux'
 import {useAppSelector} from '../../hooks/redux'
 import {kinopoiskSlice} from '../../store/kinopoiskSlice'
-import {addFilmsToList, fetchFilms} from '../../store/kinopoiskAsyncThunks'
+import {fetchFilms} from '../../store/kinopoiskAsyncThunks'
 import styles from './RandomFilmButton.module.scss'
 import {Button} from '@mui/material'
 import {useEffect} from 'react'
@@ -41,7 +41,7 @@ function RandomFilmButton() {
                 if (currentFilmNumber === listFilms.length - 8) { // Подгружаю ещё одну страницу с фильмами с API (до 20 фильмов за раз) и добавляю в имеющийся список фильмов
                     if (currentPageResponse < totalPagesResponse) {
                         dispatch(changeNumPageResponse())
-                        dispatch(addFilmsToList())
+                        dispatch(fetchFilms())
                         console.log(currentPageResponse, ' ', totalPagesResponse)
                     }
                 }

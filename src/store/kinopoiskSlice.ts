@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import shuffleListFilms from '../features/shuffleListFilms'
 import initialState from './initialState'
-import {fetchFilms, addFilmsToList} from './kinopoiskAsyncThunks'
+import {fetchFilms} from './kinopoiskAsyncThunks'
 
 export const kinopoiskSlice = createSlice({
         name: 'kinopoisk',
@@ -47,22 +47,21 @@ export const kinopoiskSlice = createSlice({
             },
             [fetchFilms.fulfilled.type]: (state, action) => {
                 state.status = 'resolved'
-                state.listFilms = shuffleListFilms(action.payload.films)
                 state.totalPagesResponse = action.payload.pagesCount
-                state.isChangedFilters = false
-                state.currentFilmNumber = 0
-
+                if (state.isChangedFilters) {
+                    state.listFilms = shuffleListFilms(action.payload.films)
+                    console.log(state.listFilms)
+                    state.currentFilmNumber = 0
+                    state.isChangedFilters = false
+                } else {
+                    state.listFilms = state.listFilms.concat(shuffleListFilms(action.payload.films))
+                    state.isDisabledRandomFilmButton = false
+                    console.log(state.listFilms)
+                }
             },
             [fetchFilms.rejected.type]: (state, action) => {
                 state.status = 'rejected'
                 state.error = action.payload
-            },
-            [addFilmsToList.fulfilled.type]: (state, action) => {
-                state.status = 'resolved'
-                state.listFilms = state.listFilms.concat(shuffleListFilms(action.payload.films))
-                state.totalPagesResponse = action.payload.pagesCount
-                state.isDisabledRandomFilmButton = false
-                console.log(state.listFilms)
             },
         }
     }
