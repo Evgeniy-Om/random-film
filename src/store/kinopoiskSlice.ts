@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import shuffleListFilms from '../features/shuffleListFilms'
 import initialState from './initialState'
-import {fetchFilms} from './kinopoiskAsyncThunks'
+import {fetchFilms, addFilmsToList} from './kinopoiskAsyncThunks'
 
 export const kinopoiskSlice = createSlice({
         name: 'kinopoisk',
@@ -19,18 +19,14 @@ export const kinopoiskSlice = createSlice({
             selectRating(state, action: PayloadAction<[number, number]>) {
                 state.selectedRating = action.payload
             },
-            numFilm(state) {
-                state.currentFilmNumber += 1
+            numFilm(state, action: PayloadAction<number>) {
+                state.currentFilmNumber = action.payload
             },
             shuffle(state) {
                 state.listFilms = shuffleListFilms(state.listFilms)
             },
             isNewFilters(state, action: PayloadAction<boolean>) {
                 state.isChangedFilters = action.payload
-                console.log(state.isChangedFilters)
-            },
-            numPagesResponse(state, action) {
-
             },
             changeNumPageResponse(state) {
                 (state.isChangedFilters)
@@ -42,7 +38,6 @@ export const kinopoiskSlice = createSlice({
             },
             disableButton(state, action) {
                 state.isDisabledRandomFilmButton = action.payload
-                console.log(`Disabled: ${state.isDisabledRandomFilmButton}`)
             }
         },
         extraReducers: {
@@ -52,16 +47,23 @@ export const kinopoiskSlice = createSlice({
             },
             [fetchFilms.fulfilled.type]: (state, action) => {
                 state.status = 'resolved'
-                state.listFilms = action.payload.films
+                state.listFilms = shuffleListFilms(action.payload.films)
                 state.totalPagesResponse = action.payload.pagesCount
-                console.log(action)
-                console.log(state.totalPagesResponse)
+                state.isChangedFilters = false
+                state.currentFilmNumber = 0
 
             },
             [fetchFilms.rejected.type]: (state, action) => {
                 state.status = 'rejected'
                 state.error = action.payload
-            }
+            },
+            [addFilmsToList.fulfilled.type]: (state, action) => {
+                state.status = 'resolved'
+                state.listFilms = state.listFilms.concat(shuffleListFilms(action.payload.films))
+                state.totalPagesResponse = action.payload.pagesCount
+                state.isDisabledRandomFilmButton = false
+                console.log(state.listFilms)
+            },
         }
     }
 )

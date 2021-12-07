@@ -4,6 +4,7 @@ import {kinopoiskSlice} from '../../store/kinopoiskSlice'
 import {addFilmsToList, fetchFilms} from '../../store/kinopoiskAsyncThunks'
 import styles from './RandomFilmButton.module.scss'
 import {Button} from '@mui/material'
+import {useEffect} from 'react'
 
 function RandomFilmButton() {
     const {
@@ -17,23 +18,43 @@ function RandomFilmButton() {
     const {numFilm, changeNumPageResponse, disableButton} = kinopoiskSlice.actions
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        // console.log(isChangedFilters)
+        if (isChangedFilters) dispatch(changeNumPageResponse())
+        },[isChangedFilters]
+    )
+
+    // useEffect(() => {
+    //         console.log("current: ", currentPageResponse)
+    //     },[currentPageResponse]
+    // )
+
     const handleClick = () => {
-        if (isChangedFilters) { // Пользователь поменял фильтры
-            console.log("clicked")
-            dispatch(fetchFilms()) // warning
-        } else {
-            if (currentFilmNumber < listFilms.length - 1) dispatch(numFilm()) //
-            if (currentFilmNumber === listFilms.length - 6) { // Подгружаю ещё одну страницу с фильмами с API (до 20 фильмов за раз) и добавляю в имеющийся список фильмов
-                if (currentPageResponse < totalPagesResponse) {
-                    dispatch(changeNumPageResponse())
-                    dispatch(addFilmsToList())  // warning
-                    console.log(currentPageResponse, ' ', totalPagesResponse)
+        try {
+            // console.log(currentFilmNumber)
+            if (isChangedFilters) { // Пользователь поменял фильтры
+                dispatch(fetchFilms())
+            } else {
+                if (currentFilmNumber < listFilms.length - 1) {
+                    dispatch(numFilm(currentFilmNumber+1))
+                }
+                if (currentFilmNumber === listFilms.length - 8) { // Подгружаю ещё одну страницу с фильмами с API (до 20 фильмов за раз) и добавляю в имеющийся список фильмов
+                    if (currentPageResponse < totalPagesResponse) {
+                        dispatch(changeNumPageResponse())
+                        dispatch(addFilmsToList())
+                        console.log(currentPageResponse, ' ', totalPagesResponse)
+                    }
+                }
+                if (currentFilmNumber === listFilms.length - 1) {
+                    dispatch(disableButton(true))
                 }
             }
+
+        } catch (e) {
+            console.log(e)
         }
     }
-    if (currentFilmNumber === listFilms.length - 1 && !isChangedFilters)
-        dispatch(disableButton(true))
+
 
 
     return (
