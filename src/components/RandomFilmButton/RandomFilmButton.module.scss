@@ -1,9 +1,17 @@
 ._ {
-    width: 250px;
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    min-width: 250px;
+    //margin-left: 50%;
+    margin-bottom: 30px;
+    //transform: translateX(-50%);
     padding: 10px 0;
 }
 
-.spinner {
+.circular {
     position: absolute;
     margin-top: 5px;
     margin-left: 15px;

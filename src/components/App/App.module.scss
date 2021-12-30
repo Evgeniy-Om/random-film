@@ -2,7 +2,7 @@
   //display: flex;
   //flex-direction: column;
   //justify-content: center;
-  height: 100vh;
+  //height: 100vh;
 }
 
 .container {
@@ -19,11 +19,13 @@
   justify-content: flex-end;
   //align-items: center;
   //margin-bottom: 40px;
+  margin-top: 50px;
+  height: 450px;
   
-  @media (max-height: 568px) {
-    margin-top: 50px;
-    height: 450px;
-  }
+  //@media (max-height: 568px) {
+  //  margin-top: 50px;
+  //  height: 450px;
+  //}
 }
 
 .filtersWrapper {

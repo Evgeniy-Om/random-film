@@ -5,7 +5,6 @@ import {fetchFilms} from '../../store/kinopoiskAsyncThunks'
 import styles from './RandomFilmButton.module.scss'
 import {Button} from '@mui/material'
 import {useEffect} from 'react'
-import CircularProgress from '@mui/material/CircularProgress'
 
 function RandomFilmButton() {
     const {
@@ -14,14 +13,15 @@ function RandomFilmButton() {
         isChangedFilters,
         currentPageResponse,
         totalPagesResponse,
-        isDisabledRandomFilmButton,
-        status
+        isDisabledRandomFilmButton
     } = useAppSelector(state => state.kinopoisk)
     const {numFilm, changeNumPageResponse, disableButton} = kinopoiskSlice.actions
     const dispatch = useDispatch()
 
     useEffect(() => {
-            if (isChangedFilters) dispatch(changeNumPageResponse())
+            if (isChangedFilters) {
+                dispatch(changeNumPageResponse())
+            }
         }, [isChangedFilters]
     )
 
@@ -52,33 +52,22 @@ function RandomFilmButton() {
 
 
     return (
-        <div>
-            {
-                isChangedFilters && <div>
-                    <Button
-                        className={styles._}
-                        disabled={isDisabledRandomFilmButton}
-                        onClick={handleClick}
-                        variant="contained"
-                    >
-                        Новый поиск
-                    </Button>
-                    {
-                        status === 'loading' &&
-                        <CircularProgress className={styles.spinner} size={30}/>
-                    }
-                </div>
-            }
-            {
-                !isChangedFilters && <Button
-                    className={styles._}
-                    disabled={isDisabledRandomFilmButton}
-                    onClick={handleClick}
-                    variant="contained"
-                >
-                    Случайный фильм
-                </Button>
-            }
+        <div className={styles._}>
+            <Button
+                className={styles.button}
+                disabled={isDisabledRandomFilmButton}
+                onClick={handleClick}
+                variant="contained"
+            >
+                {isChangedFilters
+                    ? <span>Новый поиск</span>
+                    : <span>Случайный фильм</span>
+                }
+            </Button>
+            {/*<CircularProgress*/}
+            {/*    className={status === 'loading' ? styles.circular : 'disabled'}*/}
+            {/*    size={30}*/}
+            {/*/>*/}
         </div>
     )
 }

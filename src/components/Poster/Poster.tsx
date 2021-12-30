@@ -4,8 +4,8 @@ import {Skeleton} from '@mui/material'
 import styles from './Poster.module.scss'
 
 function Poster() {
-    const {currentFilmNumber, listFilms} = useAppSelector(state => state.kinopoisk)
-    const [isLoaded, setIsLoaded] = useState(false)
+    const {currentFilmNumber, listFilms, status} = useAppSelector(state => state.kinopoisk)
+    const [imageLoaded, setImageLoaded] = useState(false)
 
 
     const src = listFilms[currentFilmNumber].posterUrlPreview
@@ -19,8 +19,8 @@ function Poster() {
     let movement_timer: NodeJS.Timeout
 
     useEffect(() => {
-        setIsLoaded(false)
-        image.onload = () => setIsLoaded(true)
+        setImageLoaded(false)
+        image.onload = () => setImageLoaded(true)
         // if (isResizedWindow) {
         setHeightImage(heightPoster)
         // }
@@ -36,11 +36,11 @@ function Poster() {
 
     return (
         <div className={styles._} ref={refPoster}>
-            <a href="#" className={isLoaded ? styles.link : 'disabled'}>
+            <a href="#" className={!imageLoaded || status === 'loading' ? 'disabled' : styles.link}>
                 <img src={src} className={styles.image} width="auto" height={`${heightPoster}px`}/>
             </a>
             <Skeleton
-                className={isLoaded ? 'disabled' : styles.skeleton}
+                className={!imageLoaded || status === 'loading' ? styles.skeleton : 'disabled'}
                 width={heightImage ? heightImage * 0.66 : 0}
                 variant="rectangular"
                 animation="wave"
