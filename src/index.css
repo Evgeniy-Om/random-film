@@ -19,3 +19,7 @@ body {
 .slider-wrapper {
     margin: 0 10px;
 }
+
+.disabled {
+    display: none;
+}

@@ -24,14 +24,14 @@ function App() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                <div className={styles.posterTitleButtonWrapper}>
+                <div className={styles.filmWrapper}>
                     <Poster/>
                     <NameFilm/>
-                    <RandomFilmButton/>
-                    {error && <h2>Ошибка: {error}</h2>}
                 </div>
+                <RandomFilmButton/>
+                {error && <h2>Ошибка: {error}</h2>}
                 {/* Фильтры поиска*/}
-                <div className={styles.inputsWrapper}>
+                <div className={styles.filtersWrapper}>
                     <CountrySelect/>
                     <GenreSelect/>
                     <YearsSlider/>

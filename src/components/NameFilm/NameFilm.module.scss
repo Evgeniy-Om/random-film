@@ -1,12 +1,27 @@
-._ {
-    margin: 20px 0 30px;
+.root {
+    //position: absolute;
+    //bottom: 0;
+    margin: 15px 0 20px;
 }
-.nameFilm {
-    font-size: 25px;
+.wrapper {
     text-align: center;
 }
+.nameFilm {
+    font-size: 20px;
 
-.skeleton {
-    width: 280px;
-    height: 45px;
+    @media (max-height: 568px) {
+        font-size: 17px;
+    }
+}
+
+.rating {
+    display: block;
+    margin-top: 5px;
+    font-size: 15px;
+    text-align: center;
+    color: gray;
+
+    @media (max-height: 568px) {
+        font-size: 13px;
+    }
 }
